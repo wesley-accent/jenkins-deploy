@@ -15,7 +15,7 @@ pipeline {
                 }
             }
         }
-       stage("Build Docker Image") {
+       stage("Create S3 Bucket") {
             steps {
                 echo "Test stage"
             }
