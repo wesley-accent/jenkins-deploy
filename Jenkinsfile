@@ -24,7 +24,7 @@ pipeline {
        stage("Create S3 Bucket") {
 
             steps {
-                echo "Test stage"
+                echo AWS_DEFAULT_REGION
             }
         }
         stage("Release") {
