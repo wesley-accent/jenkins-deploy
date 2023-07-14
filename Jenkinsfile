@@ -4,7 +4,7 @@ pipeline {
         stage("Install Yarn") {
             agent any
             steps {
-                echo "building the application"
+                echo "installing yarn"
 
                 script{
                     def test = 2 + 2 > 3 ? 'cool' : 'not cool'
@@ -15,9 +15,15 @@ pipeline {
                 }
             }
         }
-       stage("Build Docker Image") {
+       stage("Upload to AWS") {
             steps {
-                echo "Test stage"
+                echo "Starting AWS Deploy"
+                withAWS(region:'us-east-1',credentials:'AKIASTLS45Z7V2IG5OWI'){
+                    sh 'echo "Uploading content with AWS creds"'
+                    sh 'aws s3 ls'
+
+
+                }
             }
         }
         stage("Release") {
