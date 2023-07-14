@@ -28,7 +28,6 @@ pipeline {
                    sh 'aws s3 ls'
                }
                 echo "deploying AWS services"
-                sh 'aws configure set region $AWS_DEFAULT_REGION'
             }
         }
         stage("Release") {
