@@ -1,8 +1,7 @@
 pipeline {
-
     agent any
     stages {
-        stage("Build Docker Image") {
+        stage("Install Yarn") {
             agent any
             steps {
                 echo "building the application"
@@ -11,16 +10,19 @@ pipeline {
                     def test = 2 + 2 > 3 ? 'cool' : 'not cool'
                     echo test 
                 }
+                nodejs('NodeJS-20.4.0'){
+                    sh 'yarn install'
+                }
             }
         }
-       stage("Test") {
+       stage("Build Docker Image") {
             steps {
                 echo "Test stage"
             }
         }
         stage("Release") {
             steps {
-                echo "Release stage."
+                echo "Release stage"
             }
         }
     }
