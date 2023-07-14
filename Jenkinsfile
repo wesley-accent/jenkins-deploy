@@ -18,7 +18,7 @@ pipeline {
        stage("Upload to AWS") {
             steps {
                 echo "Starting AWS Deploy"
-                withAWS(region:'us-east-1',credentials:'AKIASTLS45Z7V2IG5OWI'){
+                // withAWS(region:'us-east-1',credentials:'AKIASTLS45Z7V2IG5OWI'){
                     sh 'echo "Uploading content with AWS creds"'
                     sh 'aws s3 ls'
 
