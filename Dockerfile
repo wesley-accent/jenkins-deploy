@@ -1,9 +1,9 @@
-# FROM ubuntu
+FROM ubuntu
 
-# RUN mkdir -p /var/node
+RUN mkdir -p /var/node
 
-# WORKDIR /var/node
+WORKDIR /var/node
 
-# RUN npm install #aws cli can go here
+RUN npm install #aws cli can go here
 
-# CMD bin/www
+CMD ["echo","image created"]
