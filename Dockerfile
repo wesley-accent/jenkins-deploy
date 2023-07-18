@@ -1,9 +1,7 @@
 FROM ubuntu
 
-RUN mkdir -p /var/node
+RUN apt-get update 
 
-WORKDIR /var/node
-
-RUN npm install #aws cli can go here
+RUN apt-get install –y nginx
 
 CMD ["echo","image created"]
