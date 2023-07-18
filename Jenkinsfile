@@ -31,9 +31,12 @@ pipeline {
                 
             }
         }
-        stage("Release") {
+        stage("build docker image") {
             steps {
                 echo "Release stage"
+                script{
+                    sh 'docker build -t new-aws/node .'
+                }
             }
         }
     }
