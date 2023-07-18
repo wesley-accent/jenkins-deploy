@@ -7,36 +7,30 @@ pipeline {
     }
     
     stages {
-        stage("Install Yarn") {
+        stage("Install sudo") {
             agent any
             steps {
                 echo "building the application"
-
-                script{
-                    def test = 2 + 2 > 3 ? 'cool' : 'not cool'
-                    echo test 
-                }
-                nodejs('NodeJS-20.4.0'){
-                    sh 'yarn install'
-                }
+                sh 'apt-get install sudo -y'
             }
         }
        stage("Create S3 Bucket") {
 
             steps {
                 echo "Installing AWS Cli"
-                //sh 'curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"'
-                //sh 'unzip -o awscliv2.zip'
-                //sh './aws/install'                
+                // sh "apt-get install awscli"
+                sh 'curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"'
+                sh 'unzip -o awscliv2.zip'
+                sh 'sudo ./aws/install'                
                 
             }
         }
         stage("build docker image") {
             steps {
                 echo "Release stage"
-                script{
-                    sh 'docker build -t new-aws/node .'
-                }
+                // script{
+                //     sh 'docker build -t new-aws/node .'
+                // }
             }
         }
     }
