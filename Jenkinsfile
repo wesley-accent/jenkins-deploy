@@ -21,10 +21,7 @@ pipeline {
                 echo "Crreating S3 bucket"
                 //withAWS(credentials: 2379edff-41ee-40ce-a926-13b229b18bd9, region: 'us-east-1'){
                     //sh 'aws s3 ls'
-                }
-                
-                            
-                
+               // }   
             }
         }
         stage("build docker image") {
