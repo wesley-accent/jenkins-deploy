@@ -17,7 +17,7 @@ pipeline {
        stage("Create S3 Bucket") {
 
             steps {
-                echo "Crreating S3 bucket"
+                echo "Crreating S3 bucket-"
 
             }
         }
