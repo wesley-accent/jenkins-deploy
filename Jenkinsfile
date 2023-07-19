@@ -12,7 +12,6 @@ pipeline {
             agent any
             steps {
                 echo "building the application"
-                // sh 'apt-get install sudo -y'
             }
         }
        stage("Create S3 Bucket") {
