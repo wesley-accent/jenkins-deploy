@@ -18,7 +18,8 @@ pipeline {
        stage("Create S3 Bucket") {
 
             steps {
-                echo "Installing AWS Cli"
+                echo "Crreating S3 bucket"
+                sh "aws s3 ls"
                             
                 
             }
