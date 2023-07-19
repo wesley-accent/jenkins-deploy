@@ -1,0 +1,89 @@
+{
+    "Resources": {
+     "JenkinscdkQueue11BA6C53": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+       "VisibilityTimeout": 300
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+       "aws:cdk:path": "jenkinscdk/JenkinscdkQueue/Resource"
+      }
+     },
+     "JenkinscdkQueuePolicy0D4D1E17": {
+      "Type": "AWS::SQS::QueuePolicy",
+      "Properties": {
+       "PolicyDocument": {
+        "Statement": [
+         {
+          "Action": "sqs:SendMessage",
+          "Condition": {
+           "ArnEquals": {
+            "aws:SourceArn": {
+             "Ref": "JenkinscdkTopic860E8A97"
+            }
+           }
+          },
+          "Effect": "Allow",
+          "Principal": {
+           "Service": "sns.amazonaws.com"
+          },
+          "Resource": {
+           "Fn::GetAtt": [
+            "JenkinscdkQueue11BA6C53",
+            "Arn"
+           ]
+          }
+         }
+        ],
+        "Version": "2012-10-17"
+       },
+       "Queues": [
+        {
+         "Ref": "JenkinscdkQueue11BA6C53"
+        }
+       ]
+      },
+      "Metadata": {
+       "aws:cdk:path": "jenkinscdk/JenkinscdkQueue/Policy/Resource"
+      }
+     },
+     "JenkinscdkQueuejenkinscdkJenkinscdkTopic27A99DF9343A4FF4": {
+      "Type": "AWS::SNS::Subscription",
+      "Properties": {
+       "Protocol": "sqs",
+       "TopicArn": {
+        "Ref": "JenkinscdkTopic860E8A97"
+       },
+       "Endpoint": {
+        "Fn::GetAtt": [
+         "JenkinscdkQueue11BA6C53",
+         "Arn"
+        ]
+       }
+      },
+      "DependsOn": [
+       "JenkinscdkQueuePolicy0D4D1E17"
+      ],
+      "Metadata": {
+       "aws:cdk:path": "jenkinscdk/JenkinscdkQueue/jenkinscdkJenkinscdkTopic27A99DF9/Resource"
+      }
+     },
+     "JenkinscdkTopic860E8A97": {
+      "Type": "AWS::SNS::Topic",
+      "Metadata": {
+       "aws:cdk:path": "jenkinscdk/JenkinscdkTopic/Resource"
+      }
+     },
+     "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+       "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WNTQ6CMBCFz8K+HUVNdO8FENwbGGscwRY7bQxpencpjSZu3nzvJ5kNHPawLto3S7z2cqAOQuNa7EWt2HiLSszdJfCLIZy88kocbzrDopUZCKdfmG0UrOd94ztGS6Mjo9Piz5/NSJjSBWJM+P0ZRTW5u9GrLZQl7IoHE0nrtaOngjrfD6YLzlm6AAAA"
+      },
+      "Metadata": {
+       "aws:cdk:path": "jenkinscdk/CDKMetadata/Default"
+      }
+     }
+    }
+   }
