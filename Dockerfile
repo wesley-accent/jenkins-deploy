@@ -1,11 +1,17 @@
-FROM ubuntu
-
+FROM jenkins/jenkins:latest
+USER root
 RUN apt-get update 
+RUN apt-get install nginx -y
+RUN apt-get install -y python3-pip
+RUN pip3 install awscli
 
-RUN apt-get install –y nginx
+#RUN wget "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+#RUN unzip -o awscli2.zip
+#RUN ./aws/install
 
-RUN wget -O get-docker.sh https://get.docker.com/
 
-RUN sh get-docker.sh
+EXPOSE 80
+EXPOSE 8080
 
-CMD ["echo","image created"]
+USER jenkins
+#CMD ["nginx","-g", "daemon off;"]
